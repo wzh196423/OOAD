@@ -12,12 +12,12 @@ import java.util.Date;
 @Entity
 @Table(name = "task_item")
 public class CheckTaskItem extends BaseEntity{
-    /*
+
     @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "template_item_id")
     private CheckTemplateItem templateItem;
-    */
+
     @Enumerated(EnumType.STRING)
     private ItemStatus status = ItemStatus.Empty;
 
@@ -32,10 +32,11 @@ public class CheckTaskItem extends BaseEntity{
 
     public CheckTaskItem() {}
 
-    public CheckTaskItem(CheckTask t) {
-        this.checkTask = t;
+    public CheckTaskItem(CheckTemplateItem templateItem, CheckTask checkTask) {
+        this.templateItem = templateItem;
+        this.checkTask = checkTask;
     }
-    /*
+
     public CheckTemplateItem getTemplateItem() {
         return templateItem;
     }
@@ -43,7 +44,7 @@ public class CheckTaskItem extends BaseEntity{
     public void setTemplateItem(CheckTemplateItem templateItem) {
         this.templateItem = templateItem;
     }
-    */
+
     public ItemStatus getStatus() {
         return status;
     }

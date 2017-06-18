@@ -4,6 +4,8 @@ import fdu14ss.ooad.dao.CheckTemplateDao;
 import fdu14ss.ooad.entity.CheckTemplate;
 import fdu14ss.ooad.entity.CheckTemplateItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -11,6 +13,8 @@ import java.util.Set;
 /**
  * Created by handsome on 2017/6/18.
  */
+@Service
+@Transactional
 public class CheckTemplateService implements ICheckTemplateService{
 
     @Autowired

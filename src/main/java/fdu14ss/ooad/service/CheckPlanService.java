@@ -7,12 +7,17 @@ import fdu14ss.ooad.entity.CheckPlan;
 import fdu14ss.ooad.entity.CheckTemplate;
 import fdu14ss.ooad.entity.Company;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by handsome on 2017/6/18.
  */
+@Service
+@Transactional
 public class CheckPlanService implements ICheckPlanService{
 
     @Autowired
@@ -32,6 +37,11 @@ public class CheckPlanService implements ICheckPlanService{
 
         return checkPlanDao.save(checkPlan);
 
+    }
+
+    @Override
+    public List<CheckPlan> search(String key){
+        return checkPlanDao.findCheckPlansByNameContaining(key);
     }
 
 }

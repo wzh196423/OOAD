@@ -15,3 +15,6 @@ public interface CheckTemplateItemDao extends JpaRepository<CheckTemplateItem, L
     public List<CheckTemplateItem> findCheckTemplateItemsByDescriptionContainingOrNameContaining(String key);
 
 }
+
+
+

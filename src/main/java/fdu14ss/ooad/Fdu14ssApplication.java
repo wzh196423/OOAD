@@ -1,4 +1,4 @@
-package fdu14ss.fdu14ss;
+package fdu14ss.ooad;
 
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

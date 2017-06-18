@@ -1,6 +1,7 @@
 package fdu14ss.ooad.entity;
 
 import com.sun.istack.internal.NotNull;
+import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.util.Date;

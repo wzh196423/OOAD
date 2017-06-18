@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface CheckTemplateItemDao extends JpaRepository<CheckTemplateItem, Long> {
 
-    public List<CheckTemplateItem> findCheckTemplateItemsByDescriptionContaining(String key);
+    public List<CheckTemplateItem> findCheckTemplateItemsByNameEquals(String key);
+
+    public List<CheckTemplateItem> findCheckTemplateItemsByDescriptionContainingOrNameContaining(String key);
 
 }

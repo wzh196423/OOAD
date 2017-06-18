@@ -1,6 +1,7 @@
 package fdu14ss.ooad.dao;
 
 import fdu14ss.ooad.entity.CheckTemplateItem;
+import fdu14ss.ooad.service.CheckTemplateService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,14 +20,15 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CheckTemplateItemDaoTest {
-
     @Autowired
     CheckTemplateItemDao checkTemplateItemDao;
+
 
     @Before
     public void setUp() throws Exception {
         CheckTemplateItem item = new CheckTemplateItem("Test1", "Test Description233");
         checkTemplateItemDao.save(item);
+
     }
 
     @After

@@ -13,6 +13,6 @@ public interface CheckPlanDao extends JpaRepository<CheckPlan, Long> {
 
     List<CheckPlan> findCheckPlansByName(String name);
     // 根据模板的id查找使用这个模板的所有排查计划
-    public List<CheckPlan> findCheckPlansByTemplateEquals(Long id);
+    List<CheckPlan> findCheckPlansByTemplateEquals(Long id);
 
 }

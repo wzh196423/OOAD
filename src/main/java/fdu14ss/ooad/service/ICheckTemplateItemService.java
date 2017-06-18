@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ICheckTemplateItemService {
 
-    public void addItem(String name, String description);
+    public void createItem(String name, String description);
 
     public List<CheckTemplateItem> searchItem(String key);
 

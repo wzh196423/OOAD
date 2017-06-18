@@ -15,18 +15,18 @@ public class CheckTemplateItemService implements ICheckTemplateItemService {
     CheckTemplateItemDao checkTemplateItemDao;
 
     @Override
-    public void addItem(String name, String description) {
+    public CheckTemplateItem createItem(String name, String description) {
 
         if(checkTemplateItemDao.findCheckTemplateItemsByNameEquals(name) != null) {
 
             System.out.println("item already exist");
 
-            return;
+            return null;
         }
 
         CheckTemplateItem checkTemplateItem = new CheckTemplateItem(name, description);
 
-        checkTemplateItemDao.saveAndFlush(checkTemplateItem);
+        return checkTemplateItemDao.saveAndFlush(checkTemplateItem);
 
     }
 

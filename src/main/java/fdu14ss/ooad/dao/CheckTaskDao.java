@@ -8,7 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Created by wangziheng on 2017/6/18.
  */
 public interface CheckTaskDao extends JpaRepository<CheckTask, Long> {
-    public CheckTask findCheckTaskByIdEquals(Long task_id);
 
-    //
 }

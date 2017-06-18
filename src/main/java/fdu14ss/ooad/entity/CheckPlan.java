@@ -11,14 +11,9 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "check_plan")
-public class CheckPlan {
-    @Id
-    @GeneratedValue
-    @Column(name = "plan_id")
-    private Long id;
-
+public class CheckPlan extends BaseEntity{
     @NotNull
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "template_id")
     private CheckTemplate template;
 
@@ -41,10 +36,6 @@ public class CheckPlan {
         this.begin_date = begin_date;
         this.ddl = ddl;
         this.plan_src = plan_src;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public CheckTemplate getTemplate() {

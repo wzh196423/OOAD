@@ -1,4 +1,4 @@
-package fdu14ss.ooad.entity;
+package fdu14ss.ooad.entity.enums;
 
 
 /**

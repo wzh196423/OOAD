@@ -1,6 +1,8 @@
 package fdu14ss.ooad.entity;
 
 import com.sun.istack.internal.NotNull;
+import fdu14ss.ooad.entity.enums.Category;
+import fdu14ss.ooad.entity.enums.Industry;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,10 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "companies")
-public class Company {
-    @Id
-    @GeneratedValue
-    private long id;
+public class Company extends BaseEntity{
 
     @NotNull
     private String name;
@@ -34,6 +33,8 @@ public class Company {
     @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinColumn(name = "com_name",referencedColumnName = "name")
     private Set<CheckTask> task_set = new HashSet<CheckTask>();
+
+    public Company() {}
 
     public Company(String name) {
         this.name = name;
@@ -57,10 +58,6 @@ public class Company {
         this.industry = industry;
         this.linkman = linkman;
         this.phone_num = phone_num;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getName() {

@@ -1,6 +1,7 @@
 package fdu14ss.ooad.entity;
 
 import com.sun.istack.internal.NotNull;
+import fdu14ss.ooad.entity.enums.TaskStatus;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,11 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "check_task")
-public class CheckTask {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class CheckTask extends BaseEntity{
 
     @NotNull
     @ManyToOne(optional = false,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
@@ -25,5 +22,39 @@ public class CheckTask {
     @Temporal(TemporalType.DATE)
     private Date finish_time;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TaskStatus status = TaskStatus.Checking;
 
+    public CheckTask() {}
+
+    public CheckTask(CheckPlan checkPlan, Date finish_time) {
+        this.checkPlan = checkPlan;
+        this.finish_time = finish_time;
+    }
+
+    public CheckPlan getCheckPlan() {
+        return checkPlan;
+    }
+
+    public void setCheckPlan(CheckPlan checkPlan) {
+        this.checkPlan = checkPlan;
+    }
+
+    public Date getFinish_time() {
+        return finish_time;
+    }
+
+    public void setFinish_time(Date finish_time) {
+        this.finish_time = finish_time;
+    }
+
+    public TaskStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TaskStatus status) {
+        this.status = status;
+    }
+    
 }

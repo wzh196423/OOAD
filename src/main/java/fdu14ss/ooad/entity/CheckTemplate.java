@@ -12,11 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "check_template")
-public class CheckTemplate {
-    @Id
-    @GeneratedValue
-    @Column(name = "template_id")
-    private Long id;
+public class CheckTemplate extends BaseEntity{
 
     @NotNull
     private String name;
@@ -27,18 +23,17 @@ public class CheckTemplate {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "template_2_item_ref",
-            joinColumns = @JoinColumn(name = "t_id",referencedColumnName = "template_id"),
-            inverseJoinColumns = @JoinColumn(name = "i_id",referencedColumnName = "item_id")
+            joinColumns = @JoinColumn(name = "t_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "i_id",referencedColumnName = "id")
     )
     private Set<CheckTemplateItem> item_set=new HashSet<CheckTemplateItem>();
+
+    public CheckTemplate(){
+    }
 
     public CheckTemplate(String name, String description) {
         this.name = name;
         this.description = description;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {

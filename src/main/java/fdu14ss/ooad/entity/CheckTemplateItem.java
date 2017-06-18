@@ -9,12 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "check_template_items")
-public class CheckTemplateItem {
-
-    @Id
-    @GeneratedValue
-    @Column(name = "item_id")
-    private Long id;
+public class CheckTemplateItem extends BaseEntity{
 
     @NotNull
     private String name;
@@ -28,11 +23,6 @@ public class CheckTemplateItem {
         this.name = name;
         this.description = description;
     }
-
-    public Long getId() {
-        return id;
-    }
-
 
     public String getName() {
         return name;

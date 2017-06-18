@@ -9,8 +9,8 @@ import java.util.List;
  */
 public interface CheckTemplateDao extends JpaRepository<CheckTemplate, Long> {
 
-    public List<CheckTemplate> findCheckTemplatesByNameEquals(String key);
+    List<CheckTemplate> findCheckTemplatesByNameEquals(String key);
 
-    public List<CheckTemplate> findCheckTemplatesByDescriptionContainingOrNameContaining(String description, String name);
+    List<CheckTemplate> findCheckTemplatesByDescriptionContainingOrNameContaining(String description, String name);
 
 }

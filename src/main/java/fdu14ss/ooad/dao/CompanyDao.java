@@ -12,14 +12,12 @@ import java.util.List;
  * Created by wangziheng on 2017/6/18.
  */
 public interface CompanyDao extends JpaRepository<Company, Long> {
-    // 根据id查找公司
-    public Company findCompanyByIdEquals(Long id);
     // 根据公司名称模糊查找公司
-    public Company findCompanyByNameContaining(String key);
+    Company findCompanyByNameContaining(String key);
     // 根据行业大类查找所有公司
-    public List<Company> findCompaniesByCategory(Category type);
+    List<Company> findCompaniesByCategory(Category type);
     // 根据具体行业查找所有公司
-    public List<Company> findCompaniesByIndustry(Industry type);
+    List<Company> findCompaniesByIndustry(Industry type);
     //
 
 

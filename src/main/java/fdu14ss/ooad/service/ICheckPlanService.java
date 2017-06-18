@@ -1,6 +1,8 @@
 package fdu14ss.ooad.service;
 
+import fdu14ss.ooad.entity.CheckPlan;
 import fdu14ss.ooad.entity.CheckTemplate;
+import fdu14ss.ooad.entity.Company;
 
 import java.util.Date;
 
@@ -9,6 +11,6 @@ import java.util.Date;
  */
 public interface ICheckPlanService {
 
-    public void createPlan(CheckTemplate template, Date begin_date, Date ddl, String plan_src);
+    CheckPlan createPlan(CheckTemplate template, Date begin_date, Date ddl, String plan_src);
 
 }

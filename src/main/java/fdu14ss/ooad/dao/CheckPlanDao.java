@@ -12,7 +12,12 @@ import java.util.List;
 public interface CheckPlanDao extends JpaRepository<CheckPlan, Long> {
 
     List<CheckPlan> findCheckPlansByName(String name);
+<<<<<<< HEAD
     // 根据模板的id查找使用这个模板的所有排查计划
     List<CheckPlan> findCheckPlansByTemplateEquals(Long id);
 
+=======
+    // 根据模板查找使用这个模板的所有排查计划
+    List<CheckPlan> findCheckPlansByTemplateEquals(CheckTemplate template);
+>>>>>>> a9cdc73cd64ec1bc77138bc20922c085cb908d79
 }

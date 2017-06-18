@@ -28,9 +28,8 @@ public class CheckTask extends BaseEntity{
 
     public CheckTask() {}
 
-    public CheckTask(CheckPlan checkPlan, Date finish_time) {
+    public CheckTask(CheckPlan checkPlan) {
         this.checkPlan = checkPlan;
-        this.finish_time = finish_time;
     }
 
     public CheckPlan getCheckPlan() {

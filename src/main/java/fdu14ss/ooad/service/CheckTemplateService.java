@@ -17,26 +17,26 @@ public class CheckTemplateService implements ICheckTemplateService{
     CheckTemplateDao checkTemplateDao;
 
     @Override
-    public void createTemplate(String name, String description, Set<CheckTemplateItem> items) {
-
+    public CheckTemplate createTemplate(String name, String description, Set<CheckTemplateItem> items) {
+        /*
         if(checkTemplateDao.findCheckTemplatesByNameEquals(name) != null) {
 
             System.out.println("tempalte already exist");
 
-            return;
+            return ;
         }
-
+        */
         CheckTemplate checkTemplate = new CheckTemplate(name, description);
 
         checkTemplate.setItem_set(items);
 
-        checkTemplateDao.save(checkTemplate);
+        return checkTemplateDao.save(checkTemplate);
     }
 
     @Override
-    public void saveTemplate(Long id, String name, String description, Set<CheckTemplateItem> items) {
-
-        CheckTemplate checkTemplate = checkTemplateDao.getOne(id);
+    public void addItems(CheckTemplate template, Set<CheckTemplateItem> items) {
+        /*
+        CheckTemplate checkTemplate = checkTemplateDao.getOne(template_id);
 
         if(checkTemplate == null) {
 
@@ -45,19 +45,26 @@ public class CheckTemplateService implements ICheckTemplateService{
             return;
 
         }
-
-        checkTemplate.setName(name);
-
-        checkTemplate.setDescription(description);
-
-        Set<CheckTemplateItem> itemSet = checkTemplate.getItem_set();
+        */
+        Set<CheckTemplateItem> itemSet = template.getItem_set();
 
         itemSet.addAll(items);
 
-        checkTemplate.setItem_set(itemSet);
+        template.setItem_set(itemSet);
 
-        checkTemplateDao.save(checkTemplate);
+        checkTemplateDao.save(template);
 
+    }
+
+    @Override
+    public void addOneItem(CheckTemplate template , CheckTemplateItem item){
+        Set<CheckTemplateItem> itemSet = template.getItem_set();
+
+        itemSet.add(item);
+
+        template.setItem_set(itemSet);
+
+        checkTemplateDao.save(template);
     }
 
     @Override

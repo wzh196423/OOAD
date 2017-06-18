@@ -11,9 +11,11 @@ import java.util.Set;
  */
 public interface ICheckTemplateService {
 
-    public void createTemplate(String name, String description, Set<CheckTemplateItem> items) ;
+    CheckTemplate createTemplate(String name, String description, Set<CheckTemplateItem> items) ;
 
-    public void saveTemplate(Long id, String name, String description, Set<CheckTemplateItem> items) ;
+    void addItems(CheckTemplate template, Set<CheckTemplateItem> items);
 
-    public List<CheckTemplate> searchTemplate(String key);
+    void addOneItem(CheckTemplate template , CheckTemplateItem item);
+
+    List<CheckTemplate> searchTemplate(String key);
 }

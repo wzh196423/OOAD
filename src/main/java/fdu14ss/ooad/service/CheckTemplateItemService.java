@@ -33,7 +33,7 @@ public class CheckTemplateItemService implements ICheckTemplateItemService {
     @Override
     public List<CheckTemplateItem> searchItem(String key) {
 
-        return checkTemplateItemDao.findCheckTemplateItemsByDescriptionContainingOrNameContaining(key);
+        return checkTemplateItemDao.findCheckTemplateItemsByDescriptionContainingOrNameContaining(key,key);
 
     }
 }

@@ -16,16 +16,16 @@ public class CheckPlanService implements ICheckPlanService{
     CheckPlanDao checkPlanDao;
 
     @Override
-    public void createPlan(CheckTemplate template, Date begin_date, Date ddl, String plan_src) {
+    public void createPlan(CheckTemplate template, Date begin_date, Date ddl, String name) {
 
-        if(checkPlanDao.findCheckPlansByPlan_srcEquals(plan_src) != null) {
+        if(checkPlanDao.findCheckPlansByName(name) != null) {
 
             System.out.println("plan already exist");
 
             return;
         }
 
-        CheckPlan checkPlan = new CheckPlan(template, begin_date, ddl, plan_src);
+        CheckPlan checkPlan = new CheckPlan(template, begin_date, ddl, name);
 
         checkPlanDao.save(checkPlan);
 

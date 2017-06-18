@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface CompanyDao extends JpaRepository<Company, Long> {
     // 根据id查找公司
-    public Company findCompanyById(Long id);
+    public Company findCompanyByIdEquals(Long id);
     // 根据公司名称模糊查找公司
     public Company findCompanyByNameContaining(String key);
     // 根据行业大类查找所有公司

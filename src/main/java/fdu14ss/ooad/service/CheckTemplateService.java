@@ -63,7 +63,7 @@ public class CheckTemplateService implements ICheckTemplateService{
     @Override
     public List<CheckTemplate> searchTemplate(String key) {
 
-        return checkTemplateDao.findCheckTemplatesByDescriptionContainingOrNameContaining(key);
+        return checkTemplateDao.findCheckTemplatesByDescriptionContainingOrNameContaining(key,key);
 
     }
 

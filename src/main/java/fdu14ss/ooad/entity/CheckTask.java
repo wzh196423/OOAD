@@ -1,6 +1,6 @@
 package fdu14ss.ooad.entity;
 
-import com.sun.istack.internal.NotNull;
+import javax.validation.constraints.NotNull;
 import fdu14ss.ooad.entity.enums.TaskStatus;
 
 import javax.persistence.*;

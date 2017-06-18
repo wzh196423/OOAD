@@ -1,6 +1,6 @@
 package fdu14ss.ooad.entity;
 
-import com.sun.istack.internal.NotNull;
+import javax.validation.constraints.NotNull;
 import fdu14ss.ooad.entity.enums.Category;
 import fdu14ss.ooad.entity.enums.Industry;
 
@@ -31,7 +31,7 @@ public class Company extends BaseEntity{
     private String phone_num="";
 
     @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
-    @JoinColumn(name = "com_name",referencedColumnName = "name")
+    @JoinColumn(name = "com_id",referencedColumnName = "id")
     private Set<CheckTask> task_set = new HashSet<CheckTask>();
 
     public Company() {}

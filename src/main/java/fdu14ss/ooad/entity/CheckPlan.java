@@ -1,6 +1,6 @@
 package fdu14ss.ooad.entity;
 
-import com.sun.istack.internal.NotNull;
+import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
@@ -26,7 +26,7 @@ public class CheckPlan extends BaseEntity{
     private Date ddl;
 
     @NotNull
-    private String plan_src;
+    private String name;
 
     public CheckPlan() {
     }
@@ -35,7 +35,7 @@ public class CheckPlan extends BaseEntity{
         this.template = template;
         this.begin_date = begin_date;
         this.ddl = ddl;
-        this.plan_src = plan_src;
+        this.name = plan_src;
     }
 
     public CheckTemplate getTemplate() {
@@ -58,11 +58,11 @@ public class CheckPlan extends BaseEntity{
         this.ddl = ddl;
     }
 
-    public String getPlan_src() {
-        return plan_src;
+    public String getName() {
+        return name;
     }
 
-    public void setPlan_src(String plan_src) {
-        this.plan_src = plan_src;
+    public void setName(String plan_src) {
+        this.name = plan_src;
     }
 }

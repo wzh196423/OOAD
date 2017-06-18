@@ -1,6 +1,7 @@
 package fdu14ss.ooad.dao;
 
 import fdu14ss.ooad.entity.CheckPlan;
+import fdu14ss.ooad.entity.CheckTemplate;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
  */
 public interface CheckPlanDao extends JpaRepository<CheckPlan, Long> {
 
-    public List<CheckPlan> findCheckPlansByPlan_srcEquals(String key);
+    List<CheckPlan> findCheckPlansByName(String name);
+    // 根据模板的id查找使用这个模板的所有排查计划
+    public List<CheckPlan> findCheckPlansByTemplateEquals(Long id);
 
 }

@@ -11,6 +11,6 @@ public interface CheckTemplateDao extends JpaRepository<CheckTemplate, Long> {
 
     public List<CheckTemplate> findCheckTemplatesByNameEquals(String key);
 
-    public List<CheckTemplate> findCheckTemplatesByDescriptionContainingOrNameContaining(String key);
+    public List<CheckTemplate> findCheckTemplatesByDescriptionContainingOrNameContaining(String description, String name);
 
 }

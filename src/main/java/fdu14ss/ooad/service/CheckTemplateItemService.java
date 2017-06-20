@@ -23,14 +23,12 @@ public class CheckTemplateItemService implements ICheckTemplateItemService {
 
         System.out.println("hahaha1");
 
-        if(checkTemplateItemDao.findCheckTemplateItemsByNameEquals(name).size() != 0) {
+        if(checkTemplateItemDao.findCheckTemplateItemsByName(name).size() != 0) {
 
             System.out.println("item already exist");
 
             return null;
         }
-
-
 
         CheckTemplateItem checkTemplateItem = new CheckTemplateItem(name, description);
 

@@ -13,7 +13,7 @@ import java.util.Date;
 @Table(name = "check_plan")
 public class CheckPlan extends BaseEntity{
     @NotNull
-    @ManyToOne(optional = false,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(optional = false,fetch = FetchType.EAGER)
     @JoinColumn(name = "template_id")
     private CheckTemplate template;
 
@@ -31,11 +31,11 @@ public class CheckPlan extends BaseEntity{
     public CheckPlan() {
     }
 
-    public CheckPlan(CheckTemplate template, Date begin_date, Date ddl, String plan_src) {
+    public CheckPlan(CheckTemplate template, Date begin_date, Date ddl, String name) {
         this.template = template;
         this.begin_date = begin_date;
         this.ddl = ddl;
-        this.name = plan_src;
+        this.name = name;
     }
 
     public CheckTemplate getTemplate() {
@@ -62,7 +62,7 @@ public class CheckPlan extends BaseEntity{
         return name;
     }
 
-    public void setName(String plan_src) {
-        this.name = plan_src;
+    public void setName(String name) {
+        this.name = name;
     }
 }

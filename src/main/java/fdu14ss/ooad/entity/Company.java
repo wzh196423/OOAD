@@ -30,7 +30,7 @@ public class Company extends BaseEntity{
 
     private String phone_num="";
 
-    @OneToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.MERGE,fetch=FetchType.LAZY)
     @JoinColumn(name = "com_id",referencedColumnName = "id")
     private Set<CheckTask> task_set = new HashSet<CheckTask>();
 
@@ -102,5 +102,10 @@ public class Company extends BaseEntity{
 
     public Set<CheckTask> getTask_set() {
         return task_set;
+    }
+
+    //这是我添加的
+    public void setTask_set(Set<CheckTask> task_set) {
+        this.task_set = task_set;
     }
 }

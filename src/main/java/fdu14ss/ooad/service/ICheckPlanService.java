@@ -14,6 +14,6 @@ public interface ICheckPlanService {
 
     CheckPlan createPlan(CheckTemplate template, Date begin_date, Date ddl, String name);
 
-    List<CheckPlan> search(String key);
+    List<CheckPlan> searchPlan(String key);
 
 }

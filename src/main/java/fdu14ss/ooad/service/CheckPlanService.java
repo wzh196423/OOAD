@@ -26,7 +26,7 @@ public class CheckPlanService implements ICheckPlanService{
     @Override
     public CheckPlan createPlan(CheckTemplate template, Date begin_date, Date ddl, String name) {
 
-        if(checkPlanDao.findCheckPlansByName(name) != null) {
+        if(checkPlanDao.findCheckPlansByName(name).size() > 0) {
 
             System.out.println("plan already exist");
 
@@ -40,7 +40,7 @@ public class CheckPlanService implements ICheckPlanService{
     }
 
     @Override
-    public List<CheckPlan> search(String key){
+    public List<CheckPlan> searchPlan(String key){
         return checkPlanDao.findCheckPlansByNameContaining(key);
     }
 

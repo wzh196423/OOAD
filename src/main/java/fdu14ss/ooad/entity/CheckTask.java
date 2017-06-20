@@ -14,7 +14,7 @@ import java.util.Date;
 public class CheckTask extends BaseEntity{
 
     @NotNull
-    @ManyToOne(optional = false,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "plan_id")
     private CheckPlan checkPlan;
 
@@ -28,8 +28,13 @@ public class CheckTask extends BaseEntity{
 
     public CheckTask() {}
 
-    public CheckTask(CheckPlan checkPlan) {
+    public CheckTask(CheckPlan checkPlan, Date finish_time, TaskStatus status) {
+
         this.checkPlan = checkPlan;
+
+        this.finish_time = finish_time;
+
+        this.status = status;
     }
 
     public CheckPlan getCheckPlan() {

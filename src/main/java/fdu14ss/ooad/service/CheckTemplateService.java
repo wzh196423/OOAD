@@ -22,14 +22,7 @@ public class CheckTemplateService implements ICheckTemplateService{
 
     @Override
     public CheckTemplate createTemplate(String name, String description, Set<CheckTemplateItem> items) {
-        /*
-        if(checkTemplateDao.findCheckTemplatesByNameEquals(name) != null) {
 
-            System.out.println("tempalte already exist");
-
-            return ;
-        }
-        */
         CheckTemplate checkTemplate = new CheckTemplate(name, description);
 
         checkTemplate.setItem_set(items);
@@ -39,17 +32,7 @@ public class CheckTemplateService implements ICheckTemplateService{
 
     @Override
     public void addItems(CheckTemplate template, Set<CheckTemplateItem> items) {
-        /*
-        CheckTemplate checkTemplate = checkTemplateDao.getOne(template_id);
 
-        if(checkTemplate == null) {
-
-            System.out.println("template doesn't exist");
-
-            return;
-
-        }
-        */
         Set<CheckTemplateItem> itemSet = template.getItem_set();
 
         itemSet.addAll(items);

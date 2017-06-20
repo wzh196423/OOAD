@@ -13,7 +13,7 @@ import java.util.Date;
 @Table(name = "check_plan")
 public class CheckPlan extends BaseEntity{
     @NotNull
-    @ManyToOne(optional = false,fetch = FetchType.EAGER)
+    @ManyToOne(optional = false,cascade = {CascadeType.REFRESH,CascadeType.REFRESH,CascadeType.REMOVE,CascadeType.DETACH},fetch = FetchType.EAGER)
     @JoinColumn(name = "template_id")
     private CheckTemplate template;
 

@@ -1,13 +1,7 @@
 package fdu14ss.ooad.serviceTest;
 
-import fdu14ss.ooad.dao.CheckPlanDao;
-import fdu14ss.ooad.dao.CheckTaskDao;
-import fdu14ss.ooad.dao.CheckTemplateDao;
-import fdu14ss.ooad.dao.CompanyDao;
-import fdu14ss.ooad.entity.CheckPlan;
-import fdu14ss.ooad.entity.CheckTask;
-import fdu14ss.ooad.entity.CheckTemplate;
-import fdu14ss.ooad.entity.Company;
+import fdu14ss.ooad.dao.*;
+import fdu14ss.ooad.entity.*;
 import fdu14ss.ooad.entity.enums.Category;
 import fdu14ss.ooad.entity.enums.Industry;
 import fdu14ss.ooad.entity.enums.TaskStatus;
@@ -40,7 +34,7 @@ public class CheckTaskServiceTest {
     CompanyDao companyDao;
 
     @Autowired
-    CheckTaskDao checkTaskDao;
+    CheckTemplateItemDao checkTemplateItemDao;
 
     @Autowired
     CheckPlanDao checkPlanDao;
@@ -48,96 +42,74 @@ public class CheckTaskServiceTest {
     @Autowired
     CheckTemplateDao checkTemplateDao;
 
+    @Autowired
+    CheckTaskDao checkTaskDao;
+
+    @Autowired
+    CheckTaskItemDao checkTaskItemDao;
+
 
     @Before
     public void setUp() throws Exception {
-//
-//        CheckTemplate template = new CheckTemplate("template", "templateDescription233");
-//
-//        Date date = new Date(2017,6,20);
-//
-//        CheckPlan plan = new CheckPlan(template, date, date, "plan0");
-
-    }
-
-    @Test
-    public void getTaskByCompanyId() {
-
-        // 新建checkTask
+        // 创建一个模板
         CheckTemplate template = new CheckTemplate("template", "templateDescription233");
+        // 给模板几个item
+        CheckTemplateItem item0 = new CheckTemplateItem("item0","test0");
+        checkTemplateItemDao.save(item0);
+        CheckTemplateItem item1 = new CheckTemplateItem("item1","test1");
+        checkTemplateItemDao.save(item1);
+        Set<CheckTemplateItem> set = new HashSet<>();
+        set.add(item0);
+        set.add(item1);
+        System.out.println("aaaaaaaaaaaaaaaaaaa"+set.size());
+        template.setItem_set(set);
+        checkTemplateDao.save(template);
 
         Date date = new Date(2017,6,20);
 
-        checkTemplateDao.save(template);
-
+        // 用这个模板来初始化一个plan
         CheckPlan plan = new CheckPlan(template, date, date, "plan0");
 
         checkPlanDao.save(plan);
 
-        CheckTask checkTask = new CheckTask();
-
-        checkTask.setCheckPlan(plan);
-
-        checkTask.setFinish_time(date);
-
-        checkTask.setStatus(TaskStatus.Checking);
-
-        //存储checkTask
-        checkTaskDao.save(checkTask);
-
-        Set<CheckTask> checkTaskSet = new HashSet<CheckTask>();
-
-        checkTaskSet.add(checkTask);
-
-        //新建company
+        // 初始化一个公司
         Company company = new Company("new company", Category.Sales, Industry.Food);
-
-        company.setTask_set(checkTaskSet);
-
         companyDao.save(company);
-
-        Set<CheckTask> resultTaskSet = iCheckTaskService.getTasksByCompanyId(company.getId());
-
-        assertEquals (1, resultTaskSet.size());
 
     }
 
     @Test
     public void sendPlan() {
 
-        // 新建checkTask
-        CheckTemplate template = new CheckTemplate("template", "templateDescription233");
+        // 得到初始化的plan
+        CheckPlan plan = checkPlanDao.findCheckPlansByName("plan0").get(0);
 
-        Date date = new Date(2017,6,20);
+        // 得到初始化的公司
+        Company company = companyDao.findCompaniesByName("new company").get(0);
 
-        checkTemplateDao.save(template);
+        iCheckTaskService.sendPlan(company, plan);
 
-        CheckPlan plan = new CheckPlan(template, date, date, "plan1");
+        //Set<CheckTask> resultTaskSet = iCheckTaskService.getTasksByCompanyId(company.getId());
 
-        checkPlanDao.save(plan);
-
-        //新建company
-        Company company = new Company("new company", Category.Sales, Industry.Food);
-
-        companyDao.save(company);
-
-        iCheckTaskService.sendPlan(company, plan, date, TaskStatus.Checking);
-
-        Set<CheckTask> resultTaskSet = iCheckTaskService.getTasksByCompanyId(company.getId());
-
-        assertEquals (1, resultTaskSet.size());
+        // 测试公司是否受到了这个task
+        assertEquals (1, company.getTask_set().size());
+        // 测试公司收到了这个task后，自己的task item数量，是不是等于这个task对应的plan对应的模板原有的item数量
+        assertEquals (2, company.getTask_set().iterator().next().getCheckPlan().getTemplate().getItem_set().size());
 
     }
 
     @After
     public void tearDown() throws Exception {
 
-        checkTaskDao.deleteAll();
+        companyDao.deleteAll();
 
-        checkPlanDao.deleteAll();
+        checkTaskItemDao.deleteAll();
+
+        checkTaskDao.deleteAll();
 
         checkTemplateDao.deleteAll();
 
+        checkTemplateItemDao.deleteAll();
     }
 
 }

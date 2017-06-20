@@ -21,12 +21,11 @@ public class CheckTaskItem extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private ItemStatus status = ItemStatus.Empty;
 
-    @NotNull
-    @ManyToOne(optional = false,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    //@NotNull
+    @ManyToOne(optional = false,cascade = {CascadeType.REFRESH,CascadeType.PERSIST} ,fetch = FetchType.EAGER)
     @JoinColumn(name = "task_id")
     private CheckTask checkTask;
 
-    @NotNull
     @Temporal(TemporalType.DATE)
     private Date finish_time;
 

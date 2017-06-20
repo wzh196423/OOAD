@@ -20,7 +20,7 @@ public class CheckTemplate extends BaseEntity{
     @NotNull
     private String description;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(
             name = "template_2_item_ref",
             joinColumns = @JoinColumn(name = "t_id",referencedColumnName = "id"),

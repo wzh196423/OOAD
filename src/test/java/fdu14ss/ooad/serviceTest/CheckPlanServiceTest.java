@@ -35,6 +35,7 @@ public class CheckPlanServiceTest {
 
     @Before
     public void setUp() throws Exception {
+        // 初始化操作，先在数据库中创建模板和plan
 
         CheckTemplate template = new CheckTemplate("template", "templateDescription233");
 
@@ -49,15 +50,15 @@ public class CheckPlanServiceTest {
 
     @Test
     public void createPlan() {
-
+        // 为这个业务逻辑先创建一个模板
         CheckTemplate template = new CheckTemplate("template1", "templateDescription233");
 
         Date date = new Date(2017,6,20);
 
         checkTemplateDao.save(template);
-
+        // 实际测试
         iCheckPlanService.createPlan(template, date, date, "plan1");
-
+        // 因为初始化也创建了plan，所以expect 2
         assertEquals (2, checkPlanDao.findAll().size());
 
     }

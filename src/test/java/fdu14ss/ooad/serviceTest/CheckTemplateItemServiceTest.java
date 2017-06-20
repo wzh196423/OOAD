@@ -30,7 +30,7 @@ public class CheckTemplateItemServiceTest {
 
     @Before
     public void setUp() throws Exception {
-
+        // 初始化一个item用于测试查找业务
         CheckTemplateItem item = new CheckTemplateItem("itemServiceTest0", "itemServiceTest Description233");
 
         checkTemplateItemDao.save(item);

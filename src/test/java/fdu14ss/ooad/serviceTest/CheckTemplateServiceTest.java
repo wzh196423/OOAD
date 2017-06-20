@@ -36,6 +36,7 @@ public class CheckTemplateServiceTest {
 
     @Before
     public void setUp() throws Exception {
+        // 因为要测试添加item功能，所以要先初始化一个模板
 
         CheckTemplate checkTemplate = new CheckTemplate("templateServiceTest0", "templateServiceTest Description233");
 
@@ -76,10 +77,6 @@ public class CheckTemplateServiceTest {
 
         checkTemplateItems.add(checkTemplateItem1);
 
-        //CheckTemplate checkTemplate = new CheckTemplate("templateServiceTest2", "templateServiceTest2 Description233");
-
-        //checkTemplateDao.save(checkTemplate);
-
         // 从数据库中拿到在准备阶段提前创建的模板0
 
         CheckTemplate checkTemplate = checkTemplateDao.findCheckTemplatesByName("templateServiceTest0").get(0);
@@ -96,10 +93,6 @@ public class CheckTemplateServiceTest {
         CheckTemplateItem checkTemplateItem = new CheckTemplateItem("item", "description");
 
         checkTemplateItemDao.save(checkTemplateItem);
-
-        //CheckTemplate checkTemplate = new CheckTemplate("templateServiceTest3", "templateServiceTest3 Description233");
-
-        //checkTemplateDao.save(checkTemplate);
 
         // 从数据库中拿到在准备阶段提前创建的模板0
         CheckTemplate checkTemplate = checkTemplateDao.findCheckTemplatesByName("templateServiceTest0").get(0);

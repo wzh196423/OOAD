@@ -11,7 +11,6 @@ import fdu14ss.ooad.entity.Company;
 import fdu14ss.ooad.entity.enums.Category;
 import fdu14ss.ooad.entity.enums.Industry;
 import fdu14ss.ooad.entity.enums.TaskStatus;
-import fdu14ss.ooad.service.ICheckPlanService;
 import fdu14ss.ooad.service.ICheckTaskService;
 import org.junit.After;
 import org.junit.Before;

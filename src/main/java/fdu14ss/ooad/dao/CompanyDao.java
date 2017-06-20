@@ -14,5 +14,6 @@ import java.util.List;
  */
 @Repository
 public interface CompanyDao extends JpaRepository<Company, Long> {
+    List<Company> findCompaniesByName(String name);
 
 }

@@ -1,5 +1,7 @@
 package fdu14ss.ooad.entity;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
@@ -39,5 +41,6 @@ public class CheckTemplateItem extends BaseEntity{
     public void setDescription(String description) {
         this.description = description;
     }
+
 
 }

@@ -47,6 +47,7 @@ public class CheckTemplateServiceTest {
     public void createTemplate() {
 
         CheckTemplateItem checkTemplateItem = new CheckTemplateItem("item", "description");
+        checkTemplateItemDao.save(checkTemplateItem);
 
         Set<CheckTemplateItem> checkTemplateItems = new HashSet<CheckTemplateItem>();
 
@@ -60,7 +61,7 @@ public class CheckTemplateServiceTest {
 
     @Test
     public void addItems() {
-
+        // 先创建用来添加的item集合
         Set<CheckTemplateItem> checkTemplateItems = new HashSet<CheckTemplateItem>();
 
         CheckTemplateItem checkTemplateItem = new CheckTemplateItem("item", "description");
@@ -75,13 +76,17 @@ public class CheckTemplateServiceTest {
 
         checkTemplateItems.add(checkTemplateItem1);
 
-        CheckTemplate checkTemplate = new CheckTemplate("templateServiceTest2", "templateServiceTest2 Description233");
+        //CheckTemplate checkTemplate = new CheckTemplate("templateServiceTest2", "templateServiceTest2 Description233");
 
-        checkTemplateDao.save(checkTemplate);
+        //checkTemplateDao.save(checkTemplate);
+
+        // 从数据库中拿到在准备阶段提前创建的模板0
+
+        CheckTemplate checkTemplate = checkTemplateDao.findCheckTemplatesByName("templateServiceTest0").get(0);
 
         iCheckTemplateService.addItems(checkTemplate, checkTemplateItems);
 
-        assertEquals (2, checkTemplateDao.findCheckTemplatesByName("templateServiceTest2").get(0).getItem_set().size());
+        assertEquals (2, checkTemplateDao.findCheckTemplatesByName("templateServiceTest0").get(0).getItem_set().size());
 
     }
 
@@ -92,13 +97,16 @@ public class CheckTemplateServiceTest {
 
         checkTemplateItemDao.save(checkTemplateItem);
 
-        CheckTemplate checkTemplate = new CheckTemplate("templateServiceTest3", "templateServiceTest3 Description233");
+        //CheckTemplate checkTemplate = new CheckTemplate("templateServiceTest3", "templateServiceTest3 Description233");
 
-        checkTemplateDao.save(checkTemplate);
+        //checkTemplateDao.save(checkTemplate);
+
+        // 从数据库中拿到在准备阶段提前创建的模板0
+        CheckTemplate checkTemplate = checkTemplateDao.findCheckTemplatesByName("templateServiceTest0").get(0);
 
         iCheckTemplateService.addOneItem(checkTemplate, checkTemplateItem);
 
-        Set<CheckTemplateItem> items = checkTemplateDao.findCheckTemplatesByName("templateServiceTest3").get(0).getItem_set();
+        Set<CheckTemplateItem> items = checkTemplateDao.findCheckTemplatesByName("templateServiceTest0").get(0).getItem_set();
 
         assertEquals (1, items.size());
     }

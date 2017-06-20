@@ -25,23 +25,21 @@ public class CheckTaskService implements ICheckTaskService{
     @Autowired
     CheckTaskItemDao checkTaskItemDao;
 
-    @Override
-    public Set<CheckTask> getTasksByCompanyId(Long com_id){
-        Company company = companyDao.getOne(com_id);
-        return company.getTask_set();
-    }
+    @Autowired
+    CheckTaskDao checkTaskDao;
 
     @Override
-    public void sendPlan(Company company, CheckPlan plan, Date finish_time, TaskStatus status){
-        CheckTask task = new CheckTask(plan, finish_time, status);
+    public void sendPlan(Company company, CheckPlan plan){
+        CheckTask task = new CheckTask(plan);
+        //checkTaskDao.save(task);
         // 根据task和里面对应的模板项目，创建task item
         for (CheckTemplateItem i: plan.getTemplate().getItem_set()) {
             checkTaskItemDao.save(new CheckTaskItem(i,task));
         }
+
         Set<CheckTask> current_tasks = company.getTask_set();
         current_tasks.add(task);
 
-        //???这里没有问题吗？task只是存到了current_tasks里面，但是没有存到公司里面
         company.setTask_set(current_tasks);
         companyDao.save(company);
     }

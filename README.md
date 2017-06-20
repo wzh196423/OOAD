@@ -4,9 +4,17 @@
 - 14302010026 王子珩
 - 14302010016 廖衍松
 
+### 项目地址
+- [https://github.com/wzh196423/OOAD](https://github.com/wzh196423/OOAD)
+
+###说明
+- 本次项目开发IDE及版本号：IntelliJ IDEA 2017.1.4
+- 本次Project使用的是公有云上的数据库，具体配置见[src/main/resources\application.properties](src/main/resources/application.properties)
+
 ## 代码结构
 
 ### 整个项目使用了Spring Boot框架，持久化使用采用JPA标准的Hibernate框架，数据库使用Mysql
+
 ####1.数据层
 - 实体类位于`src/main/java/fdu14ss/ooad/entity`目录下，有一个共同的抽象类BaseEntity，其他的实体类都继承这个类。实体类都只有基本的getter
 和setter方法和构造函数。部分实体类之间存在多对多或多对一的映射关系，其中CheckTemplate与CheckTemplateItem之间存在多对多的映射且有中间表。该目录下
@@ -21,4 +29,4 @@
 从而使得测试对于数据库不会产生影响
 
 ####4.配置文件
-- 整个项目的配置文件位于`pom.xml`中，有关数据库连接的配置位于`src/main/resources`中
+- 整个项目的配置文件位于`pom.xml`中，有关数据库连接的配置位于`src/main/resources/application.properties`中
